@@ -12,6 +12,11 @@ public class TestTombolaV1 {
         EstraiTombolaV1 p2=new EstraiTombolaV1();
         p2.setEstrazione("          E2");
         p1.start();
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        }catch(Exception e) {
+            System.out.println(e);
+        }
         p2.start();
 
         System.out.println("Inserire ENTER per uscire");

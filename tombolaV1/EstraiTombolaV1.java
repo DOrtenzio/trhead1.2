@@ -6,25 +6,29 @@ import java.util.concurrent.TimeUnit;
 public class EstraiTombolaV1 extends Thread {
     //VERSIONE Uno
     String nomePersona;
-    ArrayList <Integer> numeriDisponibili =new ArrayList<>();
+    public ArrayList <Integer> numeriDisponibili =new ArrayList<>();
+    int numPresenti=90;
 
     public void setEstrazione(String nome) {
         nomePersona=nome;
     }
 
     public void popolaArray(){
-        for (int i=1;i<91;i++){ numeriDisponibili.add(i); }
+        for (int i=1;i<numPresenti+1;i++){ numeriDisponibili.add(i); }
     }
 
     public void removNumero(int i) {
         numeriDisponibili.remove(i);
+        numPresenti--;
     }
 
     public void estraiNumero() {
-        int i= (int) (Math.random() * numeriDisponibili.size());
+        //Essendo che è randomizzata l'estrazione del numero è dura riuscire a far estrarre lo stesso numero, perchè se non bisognerebbe cambiare il codice
+        //Si può solo facilitare
+        int i= (int) (Math.random() * numPresenti);
         String s;
         try {
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(2);
         }catch(Exception e) {
             System.out.println(e);
         }
@@ -34,15 +38,10 @@ public class EstraiTombolaV1 extends Thread {
             s=nomePersona+" ha estratto: "+numeriDisponibili.get(i);
         System.out.println(s);
         removNumero(i);
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        }catch(Exception e) {
-            System.out.println(e);
-        }
     }
 
     public void run() {
         popolaArray();
-        while (true) estraiNumero();
+        while (numPresenti >0) estraiNumero();
     }
 }
