@@ -31,11 +31,7 @@ public class EstraiTombolaV2 extends Thread {
         else
             s=nomePersona+" ha estratto: "+numeriDisponibili.get(i)+" size: "+numeriDisponibili.size();
         System.out.println(s);
-        try {
-            TimeUnit.SECONDS.sleep(2);
-        }catch(Exception e) {
-            System.out.println(e);
-        }
+
         removNumero(i);
 
     }
